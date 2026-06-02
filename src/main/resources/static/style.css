@@ -30,30 +30,30 @@
 
 /* ---- LIGHT MODE ---- */
 body.light {
-  --bg-deepest:   #e8f4fb;
-  --bg-mid:       #d0e9f5;
-  --bg-surface:   #b8dcef;
-  --ocean-main:   #1a85b5;
-  --ocean-light:  #0e6b96;
-  --ocean-mist:   #084d6e;
-  --coral:        #c94620;
-  --coral-light:  #d9623f;
-  --green:        #1d9a6c;
-  --green-light:  #157a54;
-  --amber:        #c47f00;
+  --bg-deepest:   #f5fbff;
+  --bg-mid:       #e4f4fc;
+  --bg-surface:   #cde8f7;
+  --ocean-main:   #005f8c;
+  --ocean-light:  #007baf;
+  --ocean-mist:   #00597a;
+  --coral:        #d95e28;
+  --coral-light:  #e8784a;
+  --green:        #0f7e55;
+  --green-light:  #1a9e6c;
+  --amber:        #d08000;
   --white:        #ffffff;
-  --text-main:    #062033;
-  --text-muted:   rgba(6,32,51,0.6);
-  --card-bg:      rgba(255,255,255,0.75);
-  --card-border:  rgba(26,133,181,0.25);
-  --input-bg:     rgba(26,133,181,0.07);
-  --input-border: rgba(26,133,181,0.25);
-  --nav-bg:       rgba(232,244,251,0.92);
-  --footer-bg:    rgba(208,233,245,0.6);
-  --overlay-bg:   rgba(6,32,51,0.85);
-  --wave-color1:  #a8d8ee;
-  --wave-color2:  #b5e0f0;
-  --wave-color3:  #8ed4b8;
+  --text-main:    #02283f;
+  --text-muted:   #4a7a96;
+  --card-bg:      rgba(255,255,255,0.88);
+  --card-border:  rgba(0,95,140,0.15);
+  --input-bg:     rgba(0,95,140,0.05);
+  --input-border: rgba(0,95,140,0.2);
+  --nav-bg:       rgba(245,251,255,0.94);
+  --footer-bg:    rgba(228,244,252,0.7);
+  --overlay-bg:   rgba(2,40,63,0.82);
+  --wave-color1:  #90c8e8;
+  --wave-color2:  #a8d8f0;
+  --wave-color3:  #7ec8a8;
 }
 
 /* ---- RESET ---- */
