@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PureMarine — Kuis Pengetahuan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/ocean/src/main/resources/static/style.css">
+</head>
+<body>
+
+<div class="ocean-bg">
+  <div class="wave"></div>
+  <div class="wave"></div>
+  <div class="wave"></div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="Homepage.html" class="nav-logo">
+    <img src="/ocean/src/main/resources/static/Foto/LogoBiru.png" alt="" style="height:123px;width:auto;object-fit:contain;">
+  </a>
+  <ul class="nav-links" style="margin-left:auto;">
+    <li><a href="Homepage.html">Beranda</a></li>
+    <li><a href="Modules.html">Modul</a></li>
+    <li><a href="Quiz.html" class="active">Kuis</a></li>
+    <li><a href="Tips.html">Tips Aksi</a></li>
+    <li id="nav-auth-area">
+      <button class="btn-primary" style="padding:8px 18px;font-size:0.85rem;" onclick="openAuth('login')">Masuk / Daftar</button>
+    </li>
+    <li><button class="theme-btn" onclick="toggleTheme()" title="Ganti tema">☀️</button></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:8px;">
+    <button class="theme-btn" onclick="toggleTheme()" style="display:none" id="mobile-theme-btn">☀️</button>
+    <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
+  </div>
+</nav>
+<div class="nav-mobile" id="nav-mobile">
+  <a href="Homepage.html">🏠 Beranda</a>
+  <a href="Modules.html">📚 Modul</a>
+  <a href="Quiz.html">🧠 Kuis</a>
+  <a href="Tips.html">💡 Tips Aksi</a>
+  <a href="#" onclick="openAuth('login');document.getElementById('nav-mobile').classList.remove('open')">🔑 Masuk / Daftar</a>
+  <a href="#" onclick="toggleTheme()">🌓 Ganti Tema</a>
+</div>
+
+<div class="page-wrapper">
+  <section class="section" style="padding-top:6rem;">
+    <div class="section-header">
+      <div class="section-tag">🧠 Kuis Pengetahuan</div>
+      <h2 class="section-title">Uji Pengetahuanmu tentang Laut</h2>
+      <p class="section-desc">Jawab pertanyaan berikut untuk mengukur seberapa jauh kamu memahami kondisi laut Indonesia.</p>
+    </div>
+
+    <!-- Quiz Lobby -->
+    <div id="quiz-lobby">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin-bottom:2.5rem;">
+        <div class="tip-card reveal-card" style="cursor:pointer;border-color:rgba(41,165,214,0.3);" onclick="startQuiz('umum')">
+          <div class="tip-icon">🌊</div>
+          <div class="tip-title">Pengetahuan Umum Laut</div>
+          <div class="tip-desc">10 pertanyaan dasar tentang laut Indonesia dan ekosistemnya.</div>
+          <div style="margin-top:1rem;display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-size:0.78rem;background:rgba(41,165,214,0.15);color:var(--ocean-light);padding:4px 10px;border-radius:100px;">Pemula • 10 soal</span>
+            <span style="color:var(--ocean-main);font-size:0.85rem;">Mulai →</span>
+          </div>
+        </div>
+        <div class="tip-card reveal-card" style="cursor:pointer;border-color:rgba(232,93,58,0.3);" onclick="startQuiz('polusi')">
+          <div class="tip-icon">🛢️</div>
+          <div class="tip-title">Polusi & Sampah Laut</div>
+          <div class="tip-desc">10 pertanyaan tentang dampak polusi plastik terhadap lautan.</div>
+          <div style="margin-top:1rem;display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-size:0.78rem;background:rgba(232,93,58,0.15);color:var(--coral-light);padding:4px 10px;border-radius:100px;">Menengah • 10 soal</span>
+            <span style="color:var(--coral);font-size:0.85rem;">Mulai →</span>
+          </div>
+        </div>
+        <div class="tip-card reveal-card" style="cursor:pointer;border-color:rgba(45,189,138,0.3);" onclick="startQuiz('ekosistem')">
+          <div class="tip-icon">🪸</div>
+          <div class="tip-title">Ekosistem & Biodiversitas</div>
+          <div class="tip-desc">10 pertanyaan tentang terumbu karang, mangrove, dan biota laut.</div>
+          <div style="margin-top:1rem;display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-size:0.78rem;background:rgba(45,189,138,0.15);color:var(--green-light);padding:4px 10px;border-radius:100px;">Lanjutan • 10 soal</span>
+            <span style="color:var(--green);font-size:0.85rem;">Mulai →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Score history -->
+      <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:1.5rem;backdrop-filter:blur(8px);">
+        <div style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:600;margin-bottom:1.25rem;">🏆 Riwayat Skormu</div>
+        <div id="score-history">
+          <p style="color:var(--text-muted);font-size:0.88rem;text-align:center;padding:1rem 0;">Belum ada kuis yang diselesaikan. Mulai kuis di atas!</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quiz Active -->
+    <div id="quiz-active" style="display:none;max-width:680px;margin:0 auto;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;">
+        <button onclick="exitQuiz()" style="background:var(--input-bg);border:1px solid var(--input-border);color:var(--text-muted);padding:8px 16px;border-radius:8px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.85rem;transition:all 0.2s;" onmouseover="this.style.color='var(--text-main)'" onmouseout="this.style.color='var(--text-muted)'">← Keluar Kuis</button>
+        <div style="display:flex;align-items:center;gap:1rem;">
+          <span id="quiz-cat-label" style="font-size:0.8rem;color:var(--text-muted)"></span>
+          <span id="quiz-timer" style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:600;color:var(--ocean-light)">⏱ 30s</span>
+        </div>
+      </div>
+
+      <div style="height:4px;background:var(--input-bg);border-radius:2px;margin-bottom:2rem;overflow:hidden;">
+        <div id="quiz-progress-bar" style="height:100%;background:linear-gradient(90deg,var(--ocean-main),var(--green));border-radius:2px;transition:width 0.4s;width:0%"></div>
+      </div>
+
+      <div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.5rem;" id="quiz-q-num">Pertanyaan 1 dari 10</div>
+      <div style="font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:600;line-height:1.4;margin-bottom:1.75rem;" id="quiz-question"></div>
+
+      <div style="display:flex;flex-direction:column;gap:0.75rem;" id="quiz-options"></div>
+
+      <div class="quiz-feedback" id="quiz-feedback"></div>
+
+      <div style="display:flex;justify-content:flex-end;margin-top:1.5rem;">
+        <button id="quiz-next-btn" onclick="nextQuestion()" class="btn-primary" style="display:none;">Pertanyaan Berikutnya →</button>
+      </div>
+    </div>
+
+    <!-- Quiz Result -->
+    <div id="quiz-result" style="display:none;max-width:500px;margin:0 auto;text-align:center;">
+      <div style="font-size:5rem;margin-bottom:1rem;" id="result-emoji">🎉</div>
+      <h3 style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:700;margin-bottom:0.5rem;" id="result-title">Luar Biasa!</h3>
+      <p style="color:var(--text-muted);margin-bottom:2rem;" id="result-desc"></p>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:2rem;">
+        <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:1.25rem;">
+          <div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:700;color:var(--ocean-light);" id="result-score">0</div>
+          <div style="font-size:0.75rem;color:var(--text-muted)">Skor</div>
+        </div>
+        <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:1.25rem;">
+          <div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:700;color:var(--green);" id="result-correct">0</div>
+          <div style="font-size:0.75rem;color:var(--text-muted)">Benar</div>
+        </div>
+        <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:1.25rem;">
+          <div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:700;color:var(--amber);" id="result-time">0s</div>
+          <div style="font-size:0.75rem;color:var(--text-muted)">Rata-rata waktu</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <button class="btn-primary" onclick="retryQuiz()">Ulangi Kuis</button>
+        <a href="Modules.html" class="btn-outline">Belajar Lagi →</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="nav-logo" style="display:inline-flex;margin-bottom:0.5rem;">
+        <a href="Homepage.html" class="nav-logo">
+        <img src="/ocean/src/main/resources/static/Foto/LogoBiru.png" alt="" style="height:123px;width:auto;object-fit:contain;">
+        </a>
+        PureMarine
+      </div>
+      <p>Platform edukasi pelestarian laut Indonesia. Bersama kita jaga lautan untuk generasi yang akan datang.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigasi</h4>
+      <ul>
+        <li><a href="Homepage.html">Beranda</a></li>
+        <li><a href="Modules.html">Modul Belajar</a></li>
+        <li><a href="Tips.html">Tips Aksi</a></li>
+        <li><a href="Homepage.html#about-section">Tentang Kami</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Topik</h4>
+      <ul>
+        <li><a href="#">Polusi Plastik</a></li>
+        <li><a href="#">Terumbu Karang</a></li>
+        <li><a href="#">Overfishing</a></li>
+        <li><a href="#">Perubahan Iklim</a></li>
+        <li><a href="#">Mangrove</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Sumber Daya</h4>
+      <ul>
+        <li><a href="#">KLHK Indonesia</a></li>
+        <li><a href="#">KKP Indonesia</a></li>
+        <li><a href="#">WWF Indonesia</a></li>
+        <li><a href="#">LIPI / BRIN</a></li>
+        <li><a href="#">Ocean Watch</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 PureMarine Indonesia — Edukasi Pelestarian Laut</span>
+  </div>
+</footer>
+
+<!-- AUTH MODAL -->
+<div class="auth-modal-overlay" id="auth-modal" onclick="if(event.target===this)closeAuth()">
+  <div class="auth-box">
+    <button class="auth-close" onclick="closeAuth()">✕</button>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="auth-tab-login" onclick="switchAuthTab('login')">Masuk</button>
+      <button class="auth-tab" id="auth-tab-signup" onclick="switchAuthTab('signup')">Daftar</button>
+    </div>
+    <div id="auth-panel-login">
+      <div class="auth-title">Selamat Datang! 👋</div>
+      <div class="auth-sub">Masuk untuk bisa berkomentar dan melacak progresmu.</div>
+      <div class="auth-field">
+        <label class="auth-label">Username</label>
+        <input class="auth-input" type="text" id="login-username" placeholder="Masukkan username..." onkeydown="if(event.key==='Enter')doLogin()">
+      </div>
+      <div class="auth-field">
+        <label class="auth-label">Password</label>
+        <input class="auth-input" type="password" id="login-password" placeholder="Masukkan password..." onkeydown="if(event.key==='Enter')doLogin()">
+      </div>
+      <div class="auth-error" id="auth-error-login"></div>
+      <button class="auth-btn" onclick="doLogin()">Masuk →</button>
+      <p style="text-align:center;margin-top:1rem;font-size:0.85rem;color:var(--text-muted)">
+        Belum punya akun? <a href="#" onclick="switchAuthTab('signup')" style="color:var(--ocean-light);text-decoration:none;font-weight:500;">Daftar sekarang</a>
+      </p>
+    </div>
+    <div id="auth-panel-signup" style="display:none">
+      <div class="auth-title">Buat Akun Baru 🌊</div>
+      <div class="auth-sub">Bergabunglah dengan ribuan penjaga laut Indonesia!</div>
+      <div class="auth-field">
+        <label class="auth-label">Username</label>
+        <input class="auth-input" type="text" id="signup-username" placeholder="Pilih username unikmu..." onkeydown="if(event.key==='Enter')doSignup()">
+      </div>
+      <div class="auth-field">
+        <label class="auth-label">Password</label>
+        <input class="auth-input" type="password" id="signup-password" placeholder="Minimal 6 karakter..." onkeydown="if(event.key==='Enter')doSignup()">
+      </div>
+      <div class="auth-field">
+        <label class="auth-label">Konfirmasi Password</label>
+        <input class="auth-input" type="password" id="signup-confirm" placeholder="Ulangi password..." onkeydown="if(event.key==='Enter')doSignup()">
+      </div>
+      <div class="auth-error" id="auth-error-signup"></div>
+      <button class="auth-btn" onclick="doSignup()">Buat Akun →</button>
+      <p style="text-align:center;margin-top:1rem;font-size:0.85rem;color:var(--text-muted)">
+        Sudah punya akun? <a href="#" onclick="switchAuthTab('login')" style="color:var(--ocean-light);text-decoration:none;font-weight:500;">Masuk di sini</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- PRE-QUIZ MODAL -->
+<div class="auth-modal-overlay" id="prequiz-modal" onclick="if(event.target===this)closePrequiz()">
+  <div class="prequiz-box">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;">
+      <div>
+        <div style="font-size:0.75rem;color:var(--ocean-main);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">🎯 Sebelum Mulai</div>
+        <div style="font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;">Kenali Dirimu Dulu!</div>
+      </div>
+      <button class="auth-close" style="position:static;" onclick="closePrequiz()">✕</button>
+    </div>
+    <div id="prequiz-content"></div>
+  </div>
+</div>
+
+<!-- MODULE MODAL (needed for prequiz → open module flow) -->
+<div class="modal-overlay" id="module-modal" onclick="closeModalOutside(event)">
+  <div class="modal-box" id="modal-inner">
+    <div class="modal-hero" id="modal-hero">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-content">
+      <div class="modal-tags" id="modal-tags"></div>
+      <h2 class="modal-title" id="modal-title"></h2>
+      <p class="modal-description" id="modal-desc"></p>
+      <div class="modal-tabs">
+        <button class="modal-tab active" onclick="switchTab('materi',this)">📖 Materi</button>
+        <button class="modal-tab" onclick="switchTab('rating',this)">⭐ Rating</button>
+        <button class="modal-tab" onclick="switchTab('komentar',this)">💬 Komentar</button>
+      </div>
+      <div class="tab-panel active" id="tab-materi">
+        <div class="materi-content" id="materi-content"></div>
+      </div>
+      <div class="tab-panel" id="tab-rating">
+        <div class="rating-section">
+          <p class="rating-label">Berikan penilaianmu untuk modul ini:</p>
+          <div class="star-input-row" id="star-input">
+            <button class="star-btn" data-val="1" onclick="setRating(1)">★</button>
+            <button class="star-btn" data-val="2" onclick="setRating(2)">★</button>
+            <button class="star-btn" data-val="3" onclick="setRating(3)">★</button>
+            <button class="star-btn" data-val="4" onclick="setRating(4)">★</button>
+            <button class="star-btn" data-val="5" onclick="setRating(5)">★</button>
+          </div>
+          <button class="btn-primary" style="font-size:0.85rem;padding:10px 20px;" onclick="submitRating()">Kirim Rating</button>
+          <div class="rating-summary" id="rating-summary" style="margin-top:1rem;"></div>
+        </div>
+        <div id="rating-bar-chart"></div>
+      </div>
+      <div class="tab-panel" id="tab-komentar">
+        <div class="comments-list" id="comments-list"></div>
+        <div id="comment-form-area"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="/ocean/src/main/resources/static/js.js"></script>
+</body>
+</html>

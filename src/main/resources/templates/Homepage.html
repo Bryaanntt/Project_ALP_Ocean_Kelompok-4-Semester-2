@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PureMarine — Beranda</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/ocean/src/main/resources/static/style.css">
+</head>
+<body>
+
+<!-- OCEAN BACKGROUND -->
+<div class="ocean-bg">
+  <div class="wave"></div>
+  <div class="wave"></div>
+  <div class="wave"></div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="Homepage.html" class="nav-logo">
+    <img src="/ocean/src/main/resources/static/Foto/LogoBiru.png" alt="" style="height:123px;width:auto;object-fit:contain;">
+  </a>
+  <ul class="nav-links" style="margin-left:auto;">
+    <li><a href="Homepage.html" class="active">Beranda</a></li>
+    <li><a href="Modules.html">Modul</a></li>
+    <li><a href="Quiz.html">Kuis</a></li>
+    <li><a href="Tips.html">Tips Aksi</a></li>
+    <li id="nav-auth-area">
+      <button class="btn-primary" style="padding:8px 18px;font-size:0.85rem;" onclick="openAuth('login')">Masuk / Daftar</button>
+    </li>
+    <li><button class="theme-btn" onclick="toggleTheme()" title="Ganti tema">☀️</button></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:8px;">
+    <button class="theme-btn" onclick="toggleTheme()" style="display:none" id="mobile-theme-btn">☀️</button>
+    <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<!-- NAV MOBILE -->
+<div class="nav-mobile" id="nav-mobile">
+  <a href="Homepage.html">🏠 Beranda</a>
+  <a href="Modules.html">📚 Modul</a>
+  <a href="Quiz.html">🧠 Kuis</a>
+  <a href="Tips.html">💡 Tips Aksi</a>
+  <a href="#" onclick="openAuth('login');document.getElementById('nav-mobile').classList.remove('open')">🔑 Masuk / Daftar</a>
+  <a href="#" onclick="toggleTheme()">🌓 Ganti Tema</a>
+</div>
+
+<div class="page-wrapper">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge"><span class="badge-dot"></span> Platform Edukasi Laut Indonesia #1</div>
+      <h1>Jaga <span>Laut Kita</span>,<br>Jaga <em>Masa Depan</em><br>Kita Bersama</h1>
+      <p class="hero-desc">Indonesia memiliki garis pantai terpanjang kedua di dunia. Namun laut kita terancam polusi plastik, overfishing, dan kerusakan terumbu karang. Mari belajar dan bertindak bersama.</p>
+      <div class="hero-actions">
+        <a href="Modules.html" class="btn-primary">Mulai Belajar →</a>
+        <a href="#about-section" class="btn-outline">Pelajari Misi Kami</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-val">70%</div>
+          <div class="hero-stat-label">Permukaan Bumi adalah Laut</div>
+        </div>
+        <div>
+          <div class="hero-stat-val">8M</div>
+          <div class="hero-stat-label">Ton plastik masuk laut/tahun</div>
+        </div>
+        <div>
+          <div class="hero-stat-val">6</div>
+          <div class="hero-stat-label">Modul pembelajaran gratis</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS STRIP -->
+  <div class="stats-strip">
+    <div class="stats-strip-inner">
+      <div class="stat-item"><div class="stat-big stat-red">17.500+</div><div class="stat-label">Pulau di Indonesia</div></div>
+      <div class="stat-item"><div class="stat-big stat-green">2,5 Juta km²</div><div class="stat-label">Luas Laut Indonesia</div></div>
+      <div class="stat-item"><div class="stat-big stat-amber">50%</div><div class="stat-label">Terumbu karang rusak</div></div>
+      <div class="stat-item"><div class="stat-big" style="color:var(--ocean-light)">1 Miliar</div><div class="stat-label">Orang bergantung pada laut</div></div>
+    </div>
+  </div>
+
+  <!-- MODUL EDUKASI -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-tag">📚 Pembelajaran</div>
+      <h2 class="section-title">Modul Edukasi Pilihan</h2>
+      <p class="section-desc">Pelajari kondisi laut Indonesia dan cara melindunginya melalui modul interaktif yang dikurasi para ahli kelautan.</p>
+    </div>
+    <div class="modules-grid" id="home-modules-preview"></div>
+    <div style="text-align:center;margin-top:2rem;">
+      <a href="Modules.html" class="btn-outline">Lihat Semua Modul →</a>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- TIPS AKSI -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-tag">💡 Aksi Nyata</div>
+      <h2 class="section-title">Yang Bisa Kamu Lakukan Sekarang</h2>
+      <p class="section-desc">Perubahan besar dimulai dari langkah kecil. Berikut tindakan nyata yang bisa kamu mulai hari ini.</p>
+    </div>
+    <div class="tips-grid" id="home-tips-preview"></div>
+    <div style="text-align:center;margin-top:2rem;">
+      <a href="Tips.html" class="btn-outline">Lihat Semua Tips →</a>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- TENTANG KAMI -->
+  <section class="section" id="about-section">
+    <div class="about-grid">
+      <div>
+        <div class="section-tag">🌊 Tentang Kami</div>
+        <h2 class="section-title">Mengapa PureMarine?</h2>
+        <p style="color:var(--text-muted);line-height:1.7;margin-bottom:1.25rem;">Indonesia adalah negara kepulauan terbesar di dunia dengan lebih dari 17.500 pulau dan luas wilayah laut sekitar 2,5 juta km². Namun, laut kita menghadapi ancaman serius dari polusi, overfishing, kerusakan terumbu karang, dan dampak perubahan iklim.</p>
+        <p style="color:var(--text-muted);line-height:1.7;margin-bottom:1.25rem;">PureMarine hadir sebagai platform edukasi yang membantu masyarakat Indonesia memahami pentingnya laut dan cara melindunginya. Kami percaya bahwa kesadaran adalah langkah pertama menuju perubahan nyata.</p>
+        <p style="color:var(--text-muted);line-height:1.7;margin-bottom:2rem;">Melalui modul pembelajaran yang mudah dipahami, data terkini, dan komunitas yang aktif, kami berharap setiap warga Indonesia menjadi penjaga laut yang bertanggung jawab.</p>
+        <div style="display:flex;gap:2rem;flex-wrap:wrap;">
+          <div>
+            <div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:700;color:var(--ocean-light)">6</div>
+            <div style="font-size:0.85rem;color:var(--text-muted)">Modul Gratis</div>
+          </div>
+          <div>
+            <div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:700;color:var(--green)">100%</div>
+            <div style="font-size:0.85rem;color:var(--text-muted)">Berbasis Fakta</div>
+          </div>
+          <div>
+            <div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:700;color:var(--amber)">∞</div>
+            <div style="font-size:0.85rem;color:var(--text-muted)">Dampak Positif</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-visual">
+        <div class="about-card">
+          <div class="about-card-icon">🎯</div>
+          <div class="about-card-title">Misi Kami</div>
+          <div class="about-card-desc">Mengedukasi 1 juta masyarakat Indonesia tentang pentingnya menjaga laut.</div>
+        </div>
+        <div class="about-card" style="margin-top:1.5rem;">
+          <div class="about-card-icon">🔬</div>
+          <div class="about-card-title">Berbasis Sains</div>
+          <div class="about-card-desc">Seluruh konten dikurasi berdasarkan penelitian ilmiah terpercaya.</div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">🤝</div>
+          <div class="about-card-title">Komunitas</div>
+          <div class="about-card-desc">Bergabung bersama ribuan penjaga laut dari seluruh Nusantara.</div>
+        </div>
+        <div class="about-card" style="margin-top:1.5rem;">
+          <div class="about-card-icon">📲</div>
+          <div class="about-card-title">Akses Bebas</div>
+          <div class="about-card-desc">Semua modul dan materi dapat diakses secara gratis untuk siapa saja.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="nav-logo" style="display:inline-flex;margin-bottom:0.5rem;">
+          <a href="Homepage.html" class="nav-logo">
+          <img src="/ocean/src/main/resources/static/Foto/LogoBiru.png" alt="" style="height:123px;width:auto;object-fit:contain;">
+          </a>
+          PureMarine
+        </div>
+        <p>Platform edukasi pelestarian laut Indonesia. Bersama kita jaga lautan untuk generasi yang akan datang.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigasi</h4>
+        <ul>
+          <li><a href="Homepage.html">Beranda</a></li>
+          <li><a href="Modules.html">Modul Belajar</a></li>
+          <li><a href="Tips.html">Tips Aksi</a></li>
+          <li><a href="#about-section">Tentang Kami</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Topik</h4>
+        <ul>
+          <li><a href="Modules.html">Polusi Plastik</a></li>
+          <li><a href="Modules.html">Terumbu Karang</a></li>
+          <li><a href="Modules.html">Overfishing</a></li>
+          <li><a href="Modules.html">Perubahan Iklim</a></li>
+          <li><a href="Modules.html">Mangrove</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Sumber Daya</h4>
+        <ul>
+          <li><a href="#">KLHK Indonesia</a></li>
+          <li><a href="#">KKP Indonesia</a></li>
+          <li><a href="#">WWF Indonesia</a></li>
+          <li><a href="#">LIPI / BRIN</a></li>
+          <li><a href="#">Ocean Watch</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 PureMarine Indonesia — Edukasi Pelestarian Laut</span>
+    </div>
+  </footer>
+
+</div>
+
+<!-- Login & Register -->
+<div class="auth-modal-overlay" id="auth-modal" onclick="if(event.target===this)closeAuth()">
+  <div class="auth-box">
+    <button class="auth-close" onclick="closeAuth()">✕</button>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="auth-tab-login" onclick="switchAuthTab('login')">Masuk</button>
+      <button class="auth-tab" id="auth-tab-signup" onclick="switchAuthTab('signup')">Daftar</button>
+    </div>
+    <div id="auth-panel-login">
+      <div class="auth-title">Selamat Datang! 👋</div>
+      <div class="auth-sub">Masuk untuk bisa berkomentar dan melacak progresmu.</div>
+      <div class="auth-field">
+        <label class="auth-label">Username</label>
+        <input class="auth-input" type="text" id="login-username" placeholder="Masukkan username..." onkeydown="if(event.key==='Enter')doLogin()">
+      </div>
+      <div class="auth-field">
+        <label class="auth-label">Password</label>
+        <input class="auth-input" type="password" id="login-password" placeholder="Masukkan password..." onkeydown="if(event.key==='Enter')doLogin()">
+      </div>
+      <div class="auth-error" id="auth-error-login"></div>
+      <button class="auth-btn" onclick="doLogin()">Masuk →</button>
+      <p style="text-align:center;margin-top:1rem;font-size:0.85rem;color:var(--text-muted)">
+        Belum punya akun? <a href="#" onclick="switchAuthTab('signup')" style="color:var(--ocean-light);text-decoration:none;font-weight:500;">Daftar sekarang</a>
+      </p>
+    </div>
+    <div id="auth-panel-signup" style="display:none">
+      <div class="auth-title">Buat Akun Baru 🌊</div>
+      <div class="auth-sub">Bergabunglah dengan ribuan penjaga laut Indonesia!</div>
+      <div class="auth-field">
+        <label class="auth-label">Username</label>
+        <input class="auth-input" type="text" id="signup-username" placeholder="Pilih username unikmu..." onkeydown="if(event.key==='Enter')doSignup()">
+      </div>
+      <div class="auth-field">
+        <label class="auth-label">Password</label>
+        <input class="auth-input" type="password" id="signup-password" placeholder="Minimal 6 karakter..." onkeydown="if(event.key==='Enter')doSignup()">
+      </div>
+      <div class="auth-field">
+        <label class="auth-label">Konfirmasi Password</label>
+        <input class="auth-input" type="password" id="signup-confirm" placeholder="Ulangi password..." onkeydown="if(event.key==='Enter')doSignup()">
+      </div>
+      <div class="auth-error" id="auth-error-signup"></div>
+      <button class="auth-btn" onclick="doSignup()">Buat Akun →</button>
+      <p style="text-align:center;margin-top:1rem;font-size:0.85rem;color:var(--text-muted)">
+        Sudah punya akun? <a href="#" onclick="switchAuthTab('login')" style="color:var(--ocean-light);text-decoration:none;font-weight:500;">Masuk di sini</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Pre Quiz -->
+<div class="auth-modal-overlay" id="prequiz-modal" onclick="if(event.target===this)closePrequiz()">
+  <div class="prequiz-box">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;">
+      <div>
+        <div style="font-size:0.75rem;color:var(--ocean-main);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">🎯 Sebelum Mulai</div>
+        <div style="font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;">Kenali Dirimu Dulu!</div>
+      </div>
+      <button class="auth-close" style="position:static;" onclick="closePrequiz()">✕</button>
+    </div>
+    <div id="prequiz-content"></div>
+  </div>
+</div>
+
+<!-- Detail Modul -->
+<div class="modal-overlay" id="module-modal" onclick="closeModalOutside(event)">
+  <div class="modal-box" id="modal-inner">
+    <div class="modal-hero" id="modal-hero">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-content">
+      <div class="modal-tags" id="modal-tags"></div>
+      <h2 class="modal-title" id="modal-title"></h2>
+      <p class="modal-description" id="modal-desc"></p>
+      <div class="modal-tabs">
+        <button class="modal-tab active" onclick="switchTab('materi',this)">📖 Materi</button>
+        <button class="modal-tab" onclick="switchTab('rating',this)">⭐ Rating</button>
+        <button class="modal-tab" onclick="switchTab('komentar',this)">💬 Komentar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCRIPT -->
+<script src="/ocean/src/main/resources/static/js.js"></script>
+
+</body>
+</html>
