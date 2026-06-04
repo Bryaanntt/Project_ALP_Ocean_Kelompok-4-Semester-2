@@ -1,8 +1,12 @@
-package com.ocean.ocean;
+package com.ocean.ocean.Module.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import com.ocean.ocean.Module.Model.ModuleContentRepository;
+import com.ocean.ocean.Module.Repository.ModuleRepository;
+
 import org.springframework.ui.Model;
 import java.util.List;
 

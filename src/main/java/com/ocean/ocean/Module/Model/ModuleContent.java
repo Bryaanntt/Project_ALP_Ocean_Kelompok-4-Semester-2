@@ -1,4 +1,4 @@
-package com.ocean.ocean;
+package com.ocean.ocean.Module.Model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

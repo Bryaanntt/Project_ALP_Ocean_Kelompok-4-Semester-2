@@ -1,7 +1,10 @@
-package com.ocean.ocean;
+package com.ocean.ocean.Module.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import com.ocean.ocean.Module.Model.Quiz;
+import com.ocean.ocean.Module.Repository.QuizRepository;
 
 import java.util.List;
 

@@ -1,11 +1,14 @@
-package com.ocean.ocean;
+package com.ocean.ocean.Module.Controller;
 
 import org.springframework.web.bind.annotation.*;
+
+import com.ocean.ocean.Module.Model.LearningModule;
+import com.ocean.ocean.Module.Repository.ModuleRepository;
+
 import java.util.*;
 
 @RestController
 @RequestMapping("/api/modules")
-@CrossOrigin("*")
 public class ModuleController {
 
     private final ModuleRepository moduleRepo;
