@@ -1,6 +1,11 @@
 package com.ocean.ocean;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "module_contents")
@@ -10,66 +15,78 @@ public class ModuleContent {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "module_id")
     private Long moduleId;
 
-    private String type;
+    @Column(name = "section_order")
+    private Integer sectionOrder;
+
+    @Column(name = "content_type")
+    private String contentType;
+
+    private String title;
 
     @Column(columnDefinition = "LONGTEXT")
     private String content;
 
-    @Column(columnDefinition = "LONGTEXT")
-    private String extra;
+    @Column(name = "image_url")
+    private String imageUrl;
 
-    private Integer orderNo;
+// Getter setter
 
-    public ModuleContent() {
-    }
+public Long getId() {
+    return id;
+}
 
-    public Long getId() {
-        return id;
-    }
+public void setId(Long id) {
+    this.id = id;
+}
 
-    public Long getModuleId() {
-        return moduleId;
-    }
+public Long getModuleId() {
+    return moduleId;
+}
 
-    public String getType() {
-        return type;
-    }
+public void setModuleId(Long moduleId) {
+    this.moduleId = moduleId;
+}
 
-    public String getContent() {
-        return content;
-    }
+public Integer getSectionOrder() {
+    return sectionOrder;
+}
 
-    public String getExtra() {
-        return extra;
-    }
+public void setSectionOrder(Integer sectionOrder) {
+    this.sectionOrder = sectionOrder;
+}
 
-    public Integer getOrderNo() {
-        return orderNo;
-    }
+public String getContentType() {
+    return contentType;
+}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+public void setContentType(String contentType) {
+    this.contentType = contentType;
+}
 
-    public void setModuleId(Long moduleId) {
-        this.moduleId = moduleId;
-    }
+public String getTitle() {
+    return title;
+}
 
-    public void setType(String type) {
-        this.type = type;
-    }
+public void setTitle(String title) {
+    this.title = title;
+}
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+public String getContent() {
+    return content;
+}
 
-    public void setExtra(String extra) {
-        this.extra = extra;
-    }
+public void setContent(String content) {
+    this.content = content;
+}
 
-    public void setOrderNo(Integer orderNo) {
-        this.orderNo = orderNo;
-    }
+public String getImageUrl() {
+    return imageUrl;
+}
+
+public void setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
+}
 }

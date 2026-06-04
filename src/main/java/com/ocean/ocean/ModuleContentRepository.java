@@ -1,13 +1,12 @@
 package com.ocean.ocean;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
+import org.springframework.stereotype.Repository;
 import java.util.List;
 
+@Repository
 public interface ModuleContentRepository
-extends JpaRepository<ModuleContent, Long> {
+    extends JpaRepository<ModuleContent, Long> {
 
-    List<ModuleContent>
-    findByModuleIdOrderByOrderNo(Long moduleId);
-
+    List<ModuleContent> findByModuleIdOrderBySectionOrder(Long moduleId);
 }

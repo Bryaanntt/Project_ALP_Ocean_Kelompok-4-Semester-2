@@ -216,35 +216,332 @@ body.light .stats-strip { background:rgba(208,233,245,0.6); }
 .stat-green { color:var(--green); }
 .stat-amber { color:var(--amber); }
 
-/* ---- MODULE CARDS ---- */
-.modules-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem; }
-.module-card { background:var(--card-bg); border:1px solid var(--card-border); border-radius:var(--radius); overflow:hidden; transition:transform 0.3s,border-color 0.3s,box-shadow 0.3s; cursor:pointer; backdrop-filter:blur(8px); }
-.module-card:hover { transform:translateY(-4px); border-color:rgba(41,165,214,0.5); box-shadow:0 20px 60px rgba(0,0,0,0.3); }
-body.light .module-card:hover { box-shadow:0 20px 60px rgba(26,133,181,0.15); }
-.module-thumb { height:180px; display:flex; align-items:center; justify-content:center; font-size:4rem; position:relative; overflow:hidden; }
-.module-thumb::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,transparent 50%,rgba(10,22,40,0.8) 100%); }
-body.light .module-thumb::after { background:linear-gradient(180deg,transparent 50%,rgba(6,32,51,0.4) 100%); }
-.module-body { padding:1.25rem 1.5rem 1.5rem; }
-.module-meta { display:flex; align-items:center; justify-content:space-between; margin-bottom:0.75rem; }
-.module-tag { font-size:0.7rem; font-weight:500; text-transform:uppercase; letter-spacing:0.1em; padding:4px 10px; border-radius:100px; background:rgba(41,165,214,0.15); color:var(--ocean-light); }
-.module-tag.tag-red   { background:rgba(232,93,58,0.15);  color:var(--coral-light); }
-.module-tag.tag-green { background:rgba(45,189,138,0.15); color:var(--green-light); }
-.module-tag.tag-amber { background:rgba(240,165,0,0.15);  color:var(--amber); }
-.module-difficulty { font-size:0.75rem; color:var(--text-muted); }
-.module-title { font-family:'Syne',sans-serif; font-size:1.1rem; font-weight:600; line-height:1.3; margin-bottom:0.6rem; }
-.module-desc  { font-size:0.88rem; color:var(--text-muted); line-height:1.6; margin-bottom:1rem; }
-.module-footer { display:flex; align-items:center; justify-content:space-between; padding-top:1rem; border-top:1px solid rgba(255,255,255,0.06); }
-body.light .module-footer { border-top-color:rgba(26,133,181,0.12); }
-.module-stars  { display:flex; align-items:center; gap:4px; font-size:0.8rem; }
-.star          { color:var(--amber); font-size:0.85rem; }
-.star.empty    { color:rgba(255,255,255,0.2); }
-body.light .star.empty { color:rgba(6,32,51,0.15); }
-.module-rating-val { color:var(--text-main); font-weight:500; font-size:0.85rem; margin-left:4px; }
-.module-comments   { font-size:0.8rem; color:var(--text-muted); display:flex; align-items:center; gap:5px; }
-.module-progress   { height:3px; background:rgba(255,255,255,0.08); border-radius:2px; margin-top:0.75rem; overflow:hidden; }
-body.light .module-progress { background:rgba(26,133,181,0.12); }
-.module-progress-bar { height:100%; border-radius:2px; background:linear-gradient(90deg,var(--ocean-main),var(--green)); transition:width 0.5s ease; }
-.module-opened-badge { position:absolute;top:12px;right:12px;z-index:2;background:rgba(45,189,138,0.9);color:#fff;font-size:0.7rem;padding:4px 10px;border-radius:100px;font-weight:500; }
+/* ---- BODY / WRAPPER ---- */
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg-deepest, #0f2341);
+  color: var(--text-main, #ffffff);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+.page-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- CONTAINER ---- */
+.module-container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 6rem 1.5rem 5rem;
+}
+
+@media (max-width: 640px) {
+  .module-container {
+    padding: 5rem 1rem 4rem;
+  }
+}
+
+/* ---- HERO BANNER ---- */
+.module-hero {
+  background: var(--card-bg, rgba(14,42,71,0.7));
+  border: 1px solid var(--card-border, rgba(41,165,214,0.2));
+  border-radius: 16px;
+  padding: 2.5rem 2.75rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  animation: fadeUp 0.5s ease both;
+}
+
+/* Garis warna di atas card */
+.module-hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ocean-main, #29a5d6), var(--green, #2dbd8a));
+  border-radius: 16px 16px 0 0;
+}
+
+/* Lingkaran dekoratif */
+.module-hero::after {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 240px; height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(41,165,214,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Eyebrow label "Modul Pembelajaran" */
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(41,165,214,0.1);
+  border: 1px solid rgba(41,165,214,0.28);
+  border-radius: 100px;
+  padding: 4px 14px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ocean-light, #7ecde8);
+  margin-bottom: 1.1rem;
+}
+
+body.light .hero-eyebrow {
+  background: rgba(0,95,140,0.1);
+  border-color: rgba(0,95,140,0.28);
+}
+
+/* Judul modul */
+.module-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+  font-weight: 800;
+  color: var(--text-main, #ffffff);
+  letter-spacing: -0.02em;
+  line-height: 1.18;
+  margin-bottom: 1.1rem;
+}
+
+/* Meta badges (estimasi, materi lengkap) */
+.hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+  color: var(--text-muted, rgba(200,235,245,0.6));
+}
+
+.hero-badge svg {
+  flex-shrink: 0;
+  opacity: 0.65;
+}
+
+/* ---- PROGRESS BAR ---- */
+.progress-bar-wrap {
+  background: var(--card-bg, rgba(14,42,71,0.7));
+  border: 1px solid var(--card-border, rgba(41,165,214,0.2));
+  border-radius: 10px;
+  padding: 0.9rem 1.4rem;
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(8px);
+  animation: fadeUp 0.5s 0.1s ease both;
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--text-muted, rgba(200,235,245,0.6));
+  margin-bottom: 0.45rem;
+}
+
+.progress-track {
+  height: 6px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+body.light .progress-track {
+  background: rgba(26,133,181,0.12);
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--ocean-main, #29a5d6), var(--green, #2dbd8a));
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+
+/* ---- MAIN CONTENT CARD ---- */
+.module-card {
+  background: var(--card-bg, rgba(14,42,71,0.7));
+  border: 1px solid var(--card-border, rgba(41,165,214,0.2));
+  border-radius: 16px;
+  padding: 2.5rem 2.75rem;
+  backdrop-filter: blur(8px);
+  animation: fadeUp 0.5s 0.15s ease both;
+}
+
+@media (max-width: 640px) {
+  .module-hero,
+  .module-card {
+    padding: 1.6rem 1.25rem;
+  }
+}
+
+/* ---- CONTENT TYPES ---- */
+
+/* Heading bagian (h2 di dalam konten) */
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--ocean-light, #7ecde8);
+  margin: 2.25rem 0 0.7rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid var(--card-border, rgba(41,165,214,0.2));
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+/* Garis kiri pada heading */
+.section-title::before {
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  background: linear-gradient(180deg, var(--ocean-main, #29a5d6), var(--green, #2dbd8a));
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* Heading pertama tidak perlu margin atas */
+.section-title:first-child {
+  margin-top: 0;
+}
+
+/* Paragraf konten */
+.module-paragraph {
+  color: var(--text-muted, rgba(200,235,245,0.6));
+  font-size: 0.945rem;
+  line-height: 1.85;
+  margin-bottom: 0.95rem;
+}
+
+/* Gambar di dalam konten */
+.module-image {
+  width: 100%;
+  max-height: 380px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid var(--card-border, rgba(41,165,214,0.2));
+  display: block;
+  margin: 1.5rem 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.module-image:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+}
+
+/* ---- DIVIDER ---- */
+.content-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--card-border, rgba(41,165,214,0.2)), transparent);
+  margin: 2.5rem 0 0;
+}
+
+/* ---- NAVIGATION FOOTER ---- */
+.module-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding-top: 1.75rem;
+}
+
+/* ---- BUTTONS ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--ocean-main, #29a5d6);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--ocean-light, #7ecde8);
+  color: var(--bg-deepest, #0f2341);
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-muted, rgba(200,235,245,0.6));
+  border: 1px solid rgba(41,165,214,0.25);
+}
+
+.btn-ghost:hover {
+  background: rgba(41,165,214,0.1);
+  color: var(--ocean-light, #7ecde8);
+  border-color: rgba(41,165,214,0.5);
+  transform: translateY(-2px);
+}
+
+/* ---- ANIMATIONS ---- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- LIGHT MODE OVERRIDES ---- */
+body.light .module-hero,
+body.light .progress-bar-wrap,
+body.light .module-card {
+  background: rgba(255,255,255,0.88);
+  border-color: rgba(0,95,140,0.15);
+}
+
+body.light .section-title {
+  color: var(--ocean-light, #007baf);
+  border-bottom-color: rgba(0,95,140,0.12);
+}
+
+body.light .module-paragraph {
+  color: var(--text-muted, #4a7a96);
+}
+
+body.light .module-image {
+  border-color: rgba(0,95,140,0.12);
+}
+
+body.light .btn-ghost {
+  border-color: rgba(0,95,140,0.3);
+  color: var(--text-muted, #4a7a96);
+}
+
+body.light .btn-ghost:hover {
+  background: rgba(0,95,140,0.07);
+  color: var(--ocean-light, #007baf);
+  border-color: rgba(0,95,140,0.5);
+}
+
+body.light.content-divider{
+background:linear-gradient(90deg,transparent,rgba(0,95,140,0.15),transparent);
+}
 
 /* ---- MODAL ---- */
 .modal-overlay { display:none; position:fixed; inset:0; background:var(--overlay-bg); backdrop-filter:blur(8px); z-index:2000; overflow-y:auto; padding:2rem 1rem; }

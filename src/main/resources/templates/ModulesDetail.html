@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${module.title}">Modul</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div class="page-wrapper">
+    <div class="module-container">
+
+        <div th:each="content : ${contents}">
+
+    <!-- HEADING -->
+    <div class="section-title"
+        th:if="${content.contentType == 'heading'}"
+        th:text="${content.title}">
+    </div>
+
+    <!-- PARAGRAPH -->
+    <p class="module-paragraph"
+        th:if="${content.contentType == 'paragraph'}"
+        th:text="${content.content}">
+    </p>
+
+    <!-- IMAGE -->
+    <div th:if="${content.contentType == 'image'}" style="margin: 1.25rem 0;">
+        <img class="module-image"
+            th:src="${content.imageUrl}"
+            th:alt="${content.title ?: ''}">
+        <div th:if="${content.title}"
+            style="font-size:0.76rem; color:var(--text-muted); margin-top:6px;">
+            [[${content.title}]]
+        </div>
+    </div>
+
+    <!-- FACTBOX -->
+    <div th:if="${content.contentType == 'factbox'}"
+        class="fact-box">
+        <strong th:text="${content.title}"></strong>
+        <p th:text="${content.content}"></p>
+    </div>
+
+</div>
+
+<script src="/js.js"></script>
+</body>
+</html>

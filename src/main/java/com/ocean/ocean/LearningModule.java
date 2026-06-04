@@ -12,14 +12,15 @@ public class LearningModule {
 
     private String title;
 
-    @Column(name = "image_url")
-    private String imageUrl;
+    @Column(columnDefinition = "TEXT")
+    private String description;
 
-    @Column(columnDefinition = "LONGTEXT")
-    private String content;
+    @Column(name = "thumbnail")
+    private String thumbnail;
+
 
     public Long getId() { return id; }
     public String getTitle() { return title; }
-    public String getImageUrl() { return imageUrl; }
-    public String getContent() { return content; }
+    public String getDescription() { return description; }
+    public String getThumbnail() { return thumbnail; }
 }
