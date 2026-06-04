@@ -1,7 +1,7 @@
 /* ---- DARK MODE (default) ---- */
 :root {
-  --bg-deepest:   #0a1628;
-  --bg-mid:       #0e2a47;
+  --bg-deepest:   #0f2341;
+  --bg-mid:       #133b65;
   --bg-surface:   #1a4a6e;
   --ocean-main:   #29a5d6;
   --ocean-light:  #7ecde8;
@@ -217,7 +217,7 @@ body.light .stats-strip { background:rgba(208,233,245,0.6); }
 .stat-amber { color:var(--amber); }
 
 /* ---- MODULE CARDS ---- */
-.modules-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:1.5rem; }
+.modules-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem; }
 .module-card { background:var(--card-bg); border:1px solid var(--card-border); border-radius:var(--radius); overflow:hidden; transition:transform 0.3s,border-color 0.3s,box-shadow 0.3s; cursor:pointer; backdrop-filter:blur(8px); }
 .module-card:hover { transform:translateY(-4px); border-color:rgba(41,165,214,0.5); box-shadow:0 20px 60px rgba(0,0,0,0.3); }
 body.light .module-card:hover { box-shadow:0 20px 60px rgba(26,133,181,0.15); }

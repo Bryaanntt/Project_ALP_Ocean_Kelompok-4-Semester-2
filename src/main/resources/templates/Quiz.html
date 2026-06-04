@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PureMarine — Kuis Pengetahuan</title>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/ocean/src/main/resources/static/style.css">
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
@@ -18,14 +18,14 @@
 
 <!-- NAV -->
 <nav id="navbar">
-  <a href="Homepage.html" class="nav-logo">
-    <img src="/ocean/src/main/resources/static/Foto/LogoBiru.png" alt="" style="height:123px;width:auto;object-fit:contain;">
+  <a href="/" class="nav-logo">
+    <img src="/Foto/LogoBiru.png" alt="" style="height:123px;width:auto;object-fit:contain;">
   </a>
   <ul class="nav-links" style="margin-left:auto;">
-    <li><a href="Homepage.html">Beranda</a></li>
-    <li><a href="Modules.html">Modul</a></li>
-    <li><a href="Quiz.html" class="active">Kuis</a></li>
-    <li><a href="Tips.html">Tips Aksi</a></li>
+    <li><a href="/">Beranda</a></li>
+    <li><a href="/modules">Modul</a></li>
+    <li><a href="/quiz" class="active">Kuis</a></li>
+    <li><a href="/tips">Tips Aksi</a></li>
     <li id="nav-auth-area">
       <button class="btn-primary" style="padding:8px 18px;font-size:0.85rem;" onclick="openAuth('login')">Masuk / Daftar</button>
     </li>
@@ -39,10 +39,10 @@
 
 <!-- NAV MOBILE -->
 <div class="nav-mobile" id="nav-mobile">
-  <a href="Homepage.html">🏠 Beranda</a>
-  <a href="Modules.html">📚 Modul</a>
-  <a href="Quiz.html">🧠 Kuis</a>
-  <a href="Tips.html">💡 Tips Aksi</a>
+  <a href="/">🏠 Beranda</a>
+  <a href="/modules">📚 Modul</a>
+  <a href="/quiz" class="active">🧠 Kuis</a>
+  <a href="/tips">💡 Tips Aksi</a>
   <a href="#" onclick="openAuth('login');document.getElementById('nav-mobile').classList.remove('open')">🔑 Masuk / Daftar</a>
   <a href="#" onclick="toggleTheme()">🌓 Ganti Tema</a>
 </div>
@@ -146,7 +146,7 @@
       </div>
       <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
         <button class="btn-primary" onclick="retryQuiz()">Ulangi Kuis</button>
-        <a href="Modules.html" class="btn-outline">Belajar Lagi →</a>
+        <a href="/modules" class="btn-outline">Belajar Lagi →</a>
       </div>
     </div>
   </section>
@@ -156,8 +156,8 @@
     <div class="footer-inner">
       <div class="footer-brand">
         <div class="nav-logo" style="display:inline-flex;margin-bottom:0.5rem;">
-          <a href="Homepage.html" class="nav-logo">
-            <img src="/ocean/src/main/resources/static/Foto/LogoBiru.png" alt="" style="height:123px;width:auto;object-fit:contain;">
+          <a href="/" class="nav-logo">
+            <img src="/Foto/LogoBiru.png" alt="" style="height:123px;width:auto;object-fit:contain;">
           </a>
           PureMarine
         </div>
@@ -166,10 +166,10 @@
       <div class="footer-col">
         <h4>Navigasi</h4>
         <ul>
-          <li><a href="Homepage.html">Beranda</a></li>
-          <li><a href="Modules.html">Modul Belajar</a></li>
-          <li><a href="Tips.html">Tips Aksi</a></li>
-          <li><a href="Homepage.html#about-section">Tentang Kami</a></li>
+          <li><a href="/">Beranda</a></li>
+          <li><a href="/modules">Modul Belajar</a></li>
+          <li><a href="/tips">Tips Aksi</a></li>
+          <li><a href="/#about-section">Tentang Kami</a></li>
         </ul>
       </div>
       <div class="footer-col">
