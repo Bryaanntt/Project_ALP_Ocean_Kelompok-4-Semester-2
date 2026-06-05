@@ -355,8 +355,12 @@ function searchModules(q) {
 
   if (noResults) noResults.style.display = 'none';
 
+    function startModule(id){
+    window.location.href = `/prequiz/${id}`;
+  }
+
   grid.innerHTML = filtered.map(m => `
-    <div class="module-card reveal-card" onclick="openModule(${m.id})" style="cursor:pointer;">
+    <div class="module-card reveal-card" <div class="module-card reveal-card"onclick="startModule(${m.id})"style="cursor:pointer;">
       <div class="module-thumb" style="background:${m.bg || 'linear-gradient(135deg,#0a1628,#0e3d6e)'};position:relative;height:200px;border-radius:16px 16px 0 0;overflow:hidden;">
         <img src="${m.imageUrl || m.thumbnail || '/Foto/Jona4.jpg'}" alt="${m.title || ''}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" onerror="this.style.display='none'">
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.05) 0%,rgba(10,22,40,0.7) 100%);pointer-events:none;"></div>
@@ -370,6 +374,7 @@ function searchModules(q) {
   `).join("");
 
   setTimeout(initScrollAnimations, 80);
+
 }
 
 // ANIMASI SCROLL
@@ -502,7 +507,7 @@ async function loadModules() {
           </p>
 
           <button
-            onclick="window.location.href='/module/${module.id}'"
+            onclick="window.location.href='/prequiz/${module.id}'"
             style="
               width:100%;
               padding:10px;
@@ -524,6 +529,64 @@ async function loadModules() {
     const container = document.getElementById('all-modules-grid');
   }
 }
+
+function filterTips(kategori, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  document.querySelectorAll('.tip-card').forEach(card => {
+    if (kategori === 'semua' || card.dataset.kategori === kategori) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+async function loadOneModule() {
+  const container = document.getElementById('home-modules-preview');
+  if (!container) return;
+  try {
+    const res = await fetch('/api/modules');
+    const modules = await res.json();
+    if (!modules || modules.length === 0) return;
+
+    const m = modules[0]; // ambil 1 modul pertama saja
+    container.innerHTML = `
+      <div style="
+        width:320px;
+        background:rgba(255,255,255,0.05);
+        border-radius:16px;
+        overflow:hidden;
+        padding:12px;
+        margin:0 auto;
+      ">
+        <img
+          src="${m.thumbnail}"
+          alt="${m.title}"
+          style="width:100%;height:180px;object-fit:cover;border-radius:12px;display:block;"
+          onerror="this.style.display='none'">
+        <h3 style="margin:12px 0 8px 0;">${m.title}</h3>
+        <p style="font-size:14px;margin-bottom:12px;color:var(--text-muted);">${m.description}</p>
+        <button
+          onclick="window.location.href='/prequiz/${m.id}'"
+          style="width:100%;padding:10px;background:#00bfff;color:white;border:none;border-radius:8px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:500;">
+          📖 Baca Modul
+        </button>
+      </div>
+    `;
+  } catch (err) {
+    console.error('Gagal load modul:', err);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadOneModule);
+
+// Reveal on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal-card').forEach(el => observer.observe(el));
 
 // INIT 
 document.addEventListener('DOMContentLoaded', () => {

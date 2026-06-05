@@ -9,21 +9,19 @@
 </head>
 <body>
 
-<!-- OCEAN BACKGROUND -->
 <div class="ocean-bg">
   <div class="wave"></div>
   <div class="wave"></div>
   <div class="wave"></div>
 </div>
 
-<!-- NAV -->
 <nav id="navbar">
   <a href="/" class="nav-logo">
     <img src="/Foto/LogoBiru.png" alt="" style="height:123px;width:auto;object-fit:contain;">
   </a>
   <ul class="nav-links" style="margin-left:auto;">
     <li><a href="/" class="active">Beranda</a></li>
-    <li><a href="/modules">Modul</a></li> 
+    <li><a href="/modules">Modul</a></li>
     <li><a href="/tips">Tips Aksi</a></li>
     <li id="nav-auth-area">
       <button class="btn-primary" style="padding:8px 18px;font-size:0.85rem;" onclick="openAuth('login')">Masuk / Daftar</button>
@@ -36,7 +34,6 @@
   </div>
 </nav>
 
-<!-- NAV MOBILE -->
 <div class="nav-mobile" id="nav-mobile">
   <a href="/">🏠 Beranda</a>
   <a href="/modules">📚 Modul</a>
@@ -67,7 +64,7 @@
           <div class="hero-stat-label">Ton plastik masuk laut/tahun</div>
         </div>
         <div>
-          <div class="hero-stat-val">4</div>
+          <div class="hero-stat-val">1</div>
           <div class="hero-stat-label">Modul pembelajaran gratis</div>
         </div>
       </div>
@@ -84,14 +81,16 @@
     </div>
   </div>
 
-  <!-- MODUL EDUKASI -->
+  <!-- MODUL EDUKASI — 1 card, sama persis dengan Modules.html -->
   <section class="section">
     <div class="section-header">
       <div class="section-tag">📚 Pembelajaran</div>
       <h2 class="section-title">Modul Edukasi Pilihan</h2>
       <p class="section-desc">Pelajari kondisi laut Indonesia dan cara melindunginya melalui modul interaktif yang dikurasi para ahli kelautan.</p>
     </div>
-    <div class="modules-grid" id="home-modules-preview"></div>
+
+    <div id="home-modules-preview" style="display:flex;flex-wrap:wrap;justify-content:center;"></div>
+
     <div style="text-align:center;margin-top:2rem;">
       <a href="/modules" class="btn-outline">Lihat Semua Modul →</a>
     </div>
@@ -106,7 +105,30 @@
       <h2 class="section-title">Yang Bisa Kamu Lakukan Sekarang</h2>
       <p class="section-desc">Perubahan besar dimulai dari langkah kecil. Berikut tindakan nyata yang bisa kamu mulai hari ini.</p>
     </div>
-    <div class="tips-grid" id="home-tips-preview"></div>
+
+    <div class="tips-grid">
+      <div class="tip-card reveal-card">
+        <div class="tip-icon">👜</div>
+        <div class="tip-title">Bawa Tas Belanja Sendiri</div>
+        <div class="tip-desc">Ganti kantong plastik sekali pakai dengan tas kain yang bisa dipakai berulang kali.</div>
+      </div>
+      <div class="tip-card reveal-card">
+        <div class="tip-icon">🥤</div>
+        <div class="tip-title">Tolak Sedotan Plastik</div>
+        <div class="tip-desc">Minta minuman tanpa sedotan atau bawa sedotan stainless sendiri saat keluar rumah.</div>
+      </div>
+      <div class="tip-card reveal-card">
+        <div class="tip-icon">♻️</div>
+        <div class="tip-title">Pilah Sampah di Rumah</div>
+        <div class="tip-desc">Pisahkan sampah plastik, kertas, dan organik agar lebih mudah didaur ulang.</div>
+      </div>
+      <div class="tip-card reveal-card">
+        <div class="tip-icon">🗑️</div>
+        <div class="tip-title">Ikut Bersih-Bersih Pantai</div>
+        <div class="tip-desc">Bergabunglah dengan komunitas beach cleanup atau pungut sampah setiap kali ke pantai.</div>
+      </div>
+    </div>
+
     <div style="text-align:center;margin-top:2rem;">
       <a href="/tips" class="btn-outline">Lihat Semua Tips →</a>
     </div>
@@ -125,7 +147,7 @@
         <p style="color:var(--text-muted);line-height:1.7;margin-bottom:2rem;">Melalui modul pembelajaran yang mudah dipahami, data terkini, dan komunitas yang aktif, kami berharap setiap warga Indonesia menjadi penjaga laut yang bertanggung jawab.</p>
         <div style="display:flex;gap:2rem;flex-wrap:wrap;">
           <div>
-            <div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:700;color:var(--ocean-light)">4</div>
+            <div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:700;color:var(--ocean-light)">1</div>
             <div style="font-size:0.85rem;color:var(--text-muted)">Modul Gratis</div>
           </div>
           <div>
@@ -167,12 +189,9 @@
   <footer>
     <div class="footer-inner">
       <div class="footer-brand">
-        <div class="nav-logo" style="display:inline-flex;margin-bottom:0.5rem;">
-          <a href="/" class="nav-logo">
+        <a href="/" class="nav-logo">
           <img src="/Foto/LogoBiru.png" alt="" style="height:123px;width:auto;object-fit:contain;">
-          </a>
-          PureMarine
-        </div>
+        </a>
         <p>Platform edukasi pelestarian laut Indonesia. Bersama kita jaga lautan untuk generasi yang akan datang.</p>
       </div>
       <div class="footer-col">
@@ -212,7 +231,7 @@
 
 </div>
 
-<!-- Login & Register -->
+<!-- AUTH MODAL -->
 <div class="auth-modal-overlay" id="auth-modal" onclick="if(event.target===this)closeAuth()">
   <div class="auth-box">
     <button class="auth-close" onclick="closeAuth()">✕</button>
@@ -261,40 +280,7 @@
   </div>
 </div>
 
-<!-- Pre Quiz -->
-<div class="auth-modal-overlay" id="prequiz-modal" onclick="if(event.target===this)closePrequiz()">
-  <div class="prequiz-box">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;">
-      <div>
-        <div style="font-size:0.75rem;color:var(--ocean-main);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">🎯 Sebelum Mulai</div>
-        <div style="font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;">Kenali Dirimu Dulu!</div>
-      </div>
-      <button class="auth-close" style="position:static;" onclick="closePrequiz()">✕</button>
-    </div>
-    <div id="prequiz-content"></div>
-  </div>
-</div>
-
-<!-- Detail Modul -->
-<div class="modal-overlay" id="module-modal" onclick="closeModalOutside(event)">
-  <div class="modal-box" id="modal-inner">
-    <div class="modal-hero" id="modal-hero">
-      <button class="modal-close" onclick="closeModal()">✕</button>
-    </div>
-    <div class="modal-content">
-      <div class="modal-tags" id="modal-tags"></div>
-      <h2 class="modal-title" id="modal-title"></h2>
-      <p class="modal-description" id="modal-desc"></p>
-      <div class="modal-tabs">
-        <button class="modal-tab active" onclick="switchTab('materi',this)">📖 Materi</button>
-        <button class="modal-tab" onclick="switchTab('rating',this)">⭐ Rating</button>
-        <button class="modal-tab" onclick="switchTab('komentar',this)">💬 Komentar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- SCRIPT -->
+<div class="toast" id="toast"></div>
 <script src="/js.js"></script>
 
 </body>

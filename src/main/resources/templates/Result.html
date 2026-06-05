@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hasil Quiz</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div class="module-container">
+
+    <div class="section-title">
+        Hasil Quiz
+    </div>
+
+    <p>
+        Jawaban Benar :
+        <strong th:text="${postScore}"></strong>
+    </p>
+
+    <p>
+        Jawaban Salah :
+        <strong th:text="${totalSoal - postScore}"></strong>
+    </p>
+
+    <p>
+        Nilai :
+        <strong th:text="${postScore * 10}"></strong>
+    </p>
+
+    <div style="margin-top:20px">
+        <a href="/modules" class="finish-btn">
+            Kembali ke Modul
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>
